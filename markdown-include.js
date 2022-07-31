@@ -350,7 +350,6 @@ exports.replaceIncludeTags = function (file) {
 						replacedData = obj.rawData.replaceString(includeTag, this.build[currentFile].parsedData);
 				}
 		}
-	}
 
 	return replacedData;
 };
