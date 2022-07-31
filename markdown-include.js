@@ -7,6 +7,10 @@
 /* eslint-env node */
 'use strict';
 
+String.prototype.replaceString=function(str, newstr) {
+		return this.split(str).join(newstr);
+};
+
 var fs = require('fs');
 var q = require('q');
 
@@ -339,11 +343,12 @@ exports.replaceIncludeTags = function (file) {
 		var includeTag = obj.includeTags[i];
 		var currentFile = obj.files[i];
 
-		if (replacedData) {
-			replacedData = replacedData.replace(includeTag, this.build[currentFile].parsedData);
-		}
-		else {
-			replacedData = obj.rawData.replace(includeTag, this.build[currentFile].parsedData);
+				if (replacedData) {
+						replacedData = replacedData.replaceString(includeTag, this.build[currentFile].parsedData);
+				}
+				else {
+						replacedData = obj.rawData.replaceString(includeTag, this.build[currentFile].parsedData);
+				}
 		}
 	}
 
